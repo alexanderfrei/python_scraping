@@ -2,7 +2,7 @@
 Parsing http pages and download data with selenium webdriver.
 
 ##argedrez.com.ar
-Beatuful chess site with a broad range of tournaments.
+Beautiful chess site with a broad range of tournaments.
 Parse_chess.py script download tournaments PGN bases by the predetermined condition.  
 There is the chromedriver.exe for Chrome webdriver.
 
@@ -12,5 +12,3 @@ Get txt comma delimited base in output.
 
 id_parse.py: functions for waiting and load page + class for one game parsing.
 parser.py: import, vars, main
-
---Todo: detailed description--
