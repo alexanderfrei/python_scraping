@@ -4,20 +4,20 @@ import time
 
 """
 game:
-	0. League
-	1. Round
-	2. Home
-	3. Home goals
-	4. Away
-	5. Away goals
-	6. Date
-	7. Result
-	8. Home goals 1st half
-	9. Away goals 1st half
-	10. Home goals 2nd half
-	11. Away goals 2nd half
-	12. Country
-	13. Time of goals
+    0. League
+    1. Round
+    2. Home
+    3. Home goals
+    4. Away
+    5. Away goals
+    6. Date
+    7. Result
+    8. Home goals 1st half
+    9. Away goals 1st half
+    10. Home goals 2nd half
+    11. Away goals 2nd half
+    12. Country
+    13. Time of goals
 
 stat (home/away):
     0/1. Ball Possession
@@ -269,24 +269,4 @@ class IdParser:
         driver.close()
         return coef_par
 
-# ######################################################################
-# ######################################################################
-#
-#
-# # game_id = "SxZVL81I"
-# # http://www.flashscore.com/match/SxZVL81I/#match-summary
-# # http://www.flashscore.com/match/KjjrUFVd/#match-summary
-# gi = "KjjrUFVd"
-# # gi = "vo8fE3Dq"
-# # game_id = "4YWJwUsP"
-#
-# # driver = webdriver.Chrome()
-# # wait = WebDriverWait(driver, 10)
-#
-# game = IdParser()
-# g_par = game.get_game(gi)
-# # s_par = game.get_stat(gi)
-# c_par = game.get_coef(gi)
-#
-# [print(c + " #" + str(i)) for i,c in enumerate(c_par)]
 

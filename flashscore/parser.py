@@ -18,10 +18,6 @@ Command line parameters:
 4: end game ID (optional)
 '''
 
-# pEqRMlnC
-# url = "germany/bundesliga-2015-2016"
-# db = "ger"
-
 try:
     url = sys.argv[1]
     db = sys.argv[2]
