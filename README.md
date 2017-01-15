@@ -1,5 +1,5 @@
 # Scraping web with python
-It's founded partly by this book:
+It's based partly on this book:
 http://shop.oreilly.com/product/0636920034391.do
 
 ##argedrez.com.ar
