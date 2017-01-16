@@ -1,9 +1,7 @@
 # Scraping web with python
-It's based partly on this book:
-http://shop.oreilly.com/product/0636920034391.do
 
 ##argedrez.com.ar
-Download of free chess tournaments databases with Selenium WebDriver.
+Download free chess tournaments databases with Selenium WebDriver.
 
 http://argedrez.com.ar is a beautiful chess site with a broad range of tournaments.
 
@@ -18,3 +16,7 @@ Return txt comma delimited file in output.
 *id_parse.py* contains functions for waiting and load page + class for one game parsing.
 
 January 2017: list of bookmakers has updated on site, therefore this part of code require revision.
+
+## tools
+Web scraping with python examples and tools.
+It's based on Ryan Mitchell book: http://shop.oreilly.com/product/0636920034391.do

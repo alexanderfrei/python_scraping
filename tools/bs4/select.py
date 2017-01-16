@@ -1,10 +1,10 @@
-from urllib.request import urlopen
+import urllib.request
 from bs4 import BeautifulSoup
 import re
 
 # select by class
 
-html = urlopen("http://www.pythonscraping.com/pages/warandpeace.html")
+html = urllib.request.urlopen("http://www.pythonscraping.com/pages/warandpeace.html")
 bsObj = BeautifulSoup(html, "html.parser")
 nameList = bsObj.findAll("span", {"class":"green"}) # tag, css {attr: value} - python dictionary
 result_list = [name.get_text() for name in nameList] # get_text()
@@ -17,7 +17,7 @@ allText = bsObj.findAll(id="text")
 
 # syntax tree
 
-html = urlopen("http://www.pythonscraping.com/pages/page3.html")
+html = urllib.request.urlopen("http://www.pythonscraping.com/pages/page3.html")
 bsObj = BeautifulSoup(html, "html.parser")
 gift_table = bsObj.findAll("tr",{"class":"gift", }) # get ResultSet
 
@@ -42,7 +42,7 @@ print([image.attrs['src'] for image in images])
 
 # lambda functions
 
-html = urlopen("http://www.pythonscraping.com/pages/page2.html")
+html = urllib.request.urlopen("http://www.pythonscraping.com/pages/page2.html")
 bsObj = BeautifulSoup(html, "html.parser")
 tags = bsObj.findAll(lambda tag: len(tag.attrs) == 2) # use function to parse tag
 for tag in tags:
