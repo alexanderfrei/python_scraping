@@ -43,14 +43,14 @@ def buildWordDict(text):
 
 text = str(urlopen("http://pythonscraping.com/files/inaugurationSpeech.txt").read(), 'utf-8')
 wordDict = buildWordDict(text)
+print(wordDict)
 
 #Generate a Markov chain of length 100
-length = 100
+LENGTH = 100
 chain = ""
 currentWord = "I"
-for i in range(0, length):
+for i in range(0, LENGTH):
     chain += currentWord+" "
-    #print(wordDict[currentWord])
     currentWord = retrieveRandomWord(wordDict[currentWord])
 
 print(chain)
