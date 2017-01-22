@@ -22,7 +22,6 @@ def getAbsoluteURL(baseUrl, source):
         return None
     return url
 
-
 def getDownloadPath(baseUrl, absoluteUrl, downloadDirectory):
     path = absoluteUrl.replace("www.", "")
     path = path.replace(baseUrl, "")

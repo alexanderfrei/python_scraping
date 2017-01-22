@@ -15,6 +15,7 @@ from nltk.book import *
 from nltk import ngrams
 fourgrams = ngrams(text6, 4)
 fourgramsDist = FreqDist(fourgrams)
+
 print(fourgramsDist['Well', ',', 'that', "'"])
 
 for fourgram in fourgrams:
