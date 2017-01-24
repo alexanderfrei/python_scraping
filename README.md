@@ -23,3 +23,4 @@ Based on Ryan Mitchell book: http://shop.oreilly.com/product/0636920034391.do
 
 ## Wallpapers crawler
 
+## Blog crawler

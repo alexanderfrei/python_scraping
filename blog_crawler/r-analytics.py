@@ -51,3 +51,4 @@ def crawl_page(page_url):
 
 crawl_page(START_PAGE)
 session.close()
+
