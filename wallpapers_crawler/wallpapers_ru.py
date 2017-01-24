@@ -8,7 +8,6 @@ import requests
 from io import BytesIO
 from PIL import Image
 
-
 DOWNLOAD_PATH = "/media/frei/data/Wallpapers/wallpaper_ru/"
 
 ####################################################
@@ -19,7 +18,6 @@ headers = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     'Connection': 'keep-alive'
 }
-
 
 def init_phantomjs_driver(*args, **kwargs):
 
