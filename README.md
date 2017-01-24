@@ -19,4 +19,7 @@ January 2017: list of bookmakers has updated on site, therefore this part of cod
 
 ## tools
 Web scraping with python examples and tools.
-It's based on Ryan Mitchell book: http://shop.oreilly.com/product/0636920034391.do
+Based on Ryan Mitchell book: http://shop.oreilly.com/product/0636920034391.do
+
+## Wallpapers crawler
+
