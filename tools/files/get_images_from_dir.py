@@ -11,3 +11,4 @@ with open('./img.txt', 'w') as fl:
                 img_name = os.path.basename(img)
                 if re.match('.*(png|jpg|jpeg|gif)', img_name):
                     fl.write(img_name + '\n')
+
