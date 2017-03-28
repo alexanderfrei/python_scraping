@@ -1,7 +1,6 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 
-
 def init_phantomjs_driver(*args, **kwargs):
 
     headers = {
@@ -19,7 +18,6 @@ def init_phantomjs_driver(*args, **kwargs):
     driver.set_window_size(1200,900)
 
     return driver
-
 
 service_args = [
     '--proxy=localhost:9050',

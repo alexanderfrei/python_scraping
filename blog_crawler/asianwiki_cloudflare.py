@@ -1,63 +1,58 @@
-import socks
-import socket
-import requests
-import time
-from urllib.parse import urlsplit
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as ec
+from selenium import webdriver
 from bs4 import BeautifulSoup
-import re
+import platform as pl
 
-START_PAGE = "http://r-analytics.blogspot.ru/"
+def init_driver():
 
-####################################################
-# configuring requests session
+    platform = pl.system()
+    if platform == 'Windows':
+        driver = webdriver.Chrome(executable_path="../selenium_drivers/chromedriver_win32.exe")
+    if platform == 'Linux':
+        driver = webdriver.Chrome(executable_path="../selenium_drivers/chromedriver_32")
+    wait = WebDriverWait(driver, 10)
+    return driver, wait
 
-headers = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-    'Connection': 'keep-alive'
-}
 
-session = requests.Session()
-socks.set_default_proxy(socks.SOCKS5, "127.0.0.1", 9050)
-session.headers = headers
-socket.socket = socks.socksocket
+def crawl_page(driver, wait):
 
-##  test
-# ip_test = session.get('http://ipinfo.io/ip')
-# print(ip_test.text, session.headers)
+    # wait
+    wait.until(ec.element_to_be_clickable((By.LINK_TEXT, 'next 200')))
 
-####################################################
+    # crawl movies
+    html = driver.find_element_by_class_name('article').get_attribute('innerHTML')
+    soup = BeautifulSoup(html, "html.parser")
+    movies = soup.find('div', id="mw-pages").find('div', class_="mw-content-ltr").find_all("a")
+    for movie in movies:
+        crawl_movie(movie)
 
-def crawl_page(page_url):
+    # redirect to next page, if exists
+    try:
+        next_page = driver.find_element_by_link_text('next 200')
+        # print(next_page.get_attribute('href'))
+        next_page.click()
+        crawl_page(driver, wait)
+    except:
+        driver.close()
 
-    url = session.get(page_url)
-    base_url = "{0.scheme}://{0.netloc}".format(urlsplit(page_url))
-    soup = BeautifulSoup(url.text, "html.parser")
+def crawl_movie(url):
 
-    # crawling page
+    driver, wait = init_driver()
+    driver.get("http://asianwiki.com" + url)
+    html = driver.find_element_by_class_name('article').get_attribute('innerHTML')
+    soup = BeautifulSoup(html, "html.parser")
 
-    # getting next page, if exists
-    a_tag = soup.find_all('a')
-    for a in a_tag:
-        print(a.text)
+    rating = soup.find('span', id="w4g_rb_area-1").find('b').text
+    print(soup.find('span', id="w4g_rb_area-1").text)
 
-    # if next_page:
-    #     print(next_page[0].attrs['href'])
-    #     crawl_page(base_url + next_page[0].attrs['href'])
-
-    # for post in :
-    #     comment = post.find("a", {"class":"comment-link"})
-    #     comment_num = int(comment.get_text().replace('коммент.',''))
-    #     if comment_num > 2:
-    #         header = post.find("h3", class_=re.compile("post-title.*")).find('a')
-    #         with open('./posts.txt','a') as file:
-    #             file.write(" ".join([re.sub('\\n','',header.get_text()), header.attrs['href'], '\n']))
-    #
-    # older_page = bsObj.find("a", {"class":"blog-pager-older-link"})
-    # try:
-    #     crawl_page(older_page.attrs['href'])
-    # except:
-    #     pass
+    driver.close()
 
 HOME_PAGE = "http://asianwiki.com/index.php?title=Category:Comedy_films"
-crawl_page(HOME_PAGE)
+
+driver, wait = init_driver()
+driver.get(HOME_PAGE)
+# crawl_page(driver, wait)
+
+crawl_movie("/%2797_Aces_Go_Places")
