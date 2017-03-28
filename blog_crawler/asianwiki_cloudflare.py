@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import platform as pl
+import re
 
 def init_driver():
 
@@ -11,7 +12,7 @@ def init_driver():
     if platform == 'Windows':
         driver = webdriver.Chrome(executable_path="../selenium_drivers/chromedriver_win32.exe")
     if platform == 'Linux':
-        driver = webdriver.Chrome(executable_path="../selenium_drivers/chromedriver_32")
+        driver = webdriver.Chrome(executable_path="../selenium_drivers/chromedriver_64")
     wait = WebDriverWait(driver, 10)
     return driver, wait
 
@@ -45,14 +46,18 @@ def crawl_movie(url):
     soup = BeautifulSoup(html, "html.parser")
 
     rating = soup.find('span', id="w4g_rb_area-1").find('b').text
-    print(soup.find('span', id="w4g_rb_area-1").text)
+    votes_text = soup.find('span', id="w4g_rb_area-1").text
+    votes = re.search("\([0-9]+", votes_text).group().replace("(","")
 
+    print(rating, votes)
     driver.close()
 
 HOME_PAGE = "http://asianwiki.com/index.php?title=Category:Comedy_films"
 
 driver, wait = init_driver()
-driver.get(HOME_PAGE)
+# driver.get(HOME_PAGE)
 # crawl_page(driver, wait)
 
 crawl_movie("/%2797_Aces_Go_Places")
+
+# http://asianwiki.com/%2797_Aces_Go_Places
