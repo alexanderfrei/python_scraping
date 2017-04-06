@@ -8,7 +8,6 @@ import platform as pl
 import re
 import requests
 
-import requests
 url = 'http://moscow.en.cx/Login.aspx'
 values = {'Login': 'Freuy',
           'Password': 'puMIZDXE021189'}
