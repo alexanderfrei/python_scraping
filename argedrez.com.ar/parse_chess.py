@@ -1,11 +1,12 @@
 from selenium import webdriver
+import time
 
 dt = ""
 page = 0
 forward = ""
 parse_stop = False
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome('selenium_drivers/chromedriver.exe')  # windows
 driver.get("http://www.argedrez.com.ar")
 driver.find_element_by_xpath('//*[@id="lnkEventosAnteriores"]').click()
 
@@ -14,7 +15,7 @@ while not parse_stop:
     for i in range(1,55):
         try:
             driver.find_element_by_xpath('//*[@id="gvTorneos"]/tbody/tr[' + str(i) + ']/td[1]/a').click()
-            dt = driver.find_element_by_xpath('//*[@id="gvTorneos"]/tbody/tr[' + str(i) + ']/td[5]').text;
+            dt = driver.find_element_by_xpath('//*[@id="gvTorneos"]/tbody/tr[' + str(i) + ']/td[5]').text
             if int(dt.split('/')[0]) < 11 and dt.split('/')[2] == '2013':
                 parse_stop = True
                 break
@@ -22,10 +23,11 @@ while not parse_stop:
         except:
             continue
     if page == 0:
-        forward = '// *[ @ id = "gvTorneos"] / tbody / tr[52] / td / table / tbody / tr / td[1] / input';
+        forward = '// *[ @ id = "gvTorneos"] / tbody / tr[52] / td / table / tbody / tr / td[1] / input'
     else:
-        forward = '// *[ @ id = "gvTorneos"] / tbody / tr[52] / td / table / tbody / tr / td[3] / input';
+        forward = '// *[ @ id = "gvTorneos"] / tbody / tr[52] / td / table / tbody / tr / td[3] / input'
     page += 1
     driver.find_element_by_xpath(forward).click()
+    time.sleep(5)
 
 driver.close()
