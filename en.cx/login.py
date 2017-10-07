@@ -9,8 +9,8 @@ import re
 import requests
 
 url = 'http://moscow.en.cx/Login.aspx'
-values = {'Login': 'Freuy',
-          'Password': 'puMIZDXE021189'}
+values = {'Login': '',
+          'Password': ''}
 
 with requests.Session() as s:
     r = s.post(url, data=values)
