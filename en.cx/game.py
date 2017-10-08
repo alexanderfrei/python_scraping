@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 login_url = 'http://demo.en.cx/Login.aspx'
 game_url = "http://demo.en.cx/gameengines/encounter/play/26533"
 
-credentials = {'Login': 'frei_demo',
-               'Password': 'enkahuenka1',
+credentials = {'Login': '',
+               'Password': '',
                'persistent': '1'}
 
 with requests.Session() as s:
