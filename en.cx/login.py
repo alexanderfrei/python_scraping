@@ -9,8 +9,8 @@ import re
 import requests
 
 url = 'http://moscow.en.cx/Login.aspx'
-values = {'Login': 'Freuy',
-          'Password': 'puMIZDXE021189'}
+values = {'Login': '',
+          'Password': ''}
 
 with requests.Session() as s:
     r = s.post(url, data=values)
@@ -42,8 +42,8 @@ with requests.Session() as s:
 # username = driver.find_element_by_id("txtLogin")
 # password = driver.find_element_by_id("txtPassword")
 #
-# username.send_keys("Freuy") # <- логин
-# password.send_keys("puMIZDXE021189") # <- пароль
+# username.send_keys("") # <- логин
+# password.send_keys("") # <- пароль
 #
 # driver.find_element_by_class_name("glassubmit").click()
 # print(driver.find_element_by_tag_name("body").get_attribute('innerHTML'))
