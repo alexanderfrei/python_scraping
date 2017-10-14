@@ -1,18 +1,25 @@
 import re
+# import sys
+# sys.setrecursionlimit(100000)
+
 from bs4 import BeautifulSoup
 
-with open("ic.html", 'r', encoding='utf-8') as fl:
+with open("input/ic.html", 'r', encoding='utf-8') as fl:
     html = fl.read()
 
 soup = BeautifulSoup(html, "lxml")
 tb = soup.find('table')
-tr_ = tb.find_all('tr')
+tr_ls = tb.find('tbody').find_all('tr')
 
-names = []
+results = {}
 
-for tr in tr_:
+for tr in tr_ls[1:]:
     name = tr.find('a')
-    if name:
-        if name.text.find('игра') == -1:
-            td_ = tr.find_all('td')
-            print(name.text)
+    td_ls = tr.find_all('td')
+    for td in td_ls[2:]:
+        results.setdefault(name.text, []).append(td.text)
+
+# print(results)
+with open('output/IC.csv', 'w', encoding='windows-1251') as out:
+    for k in results:
+        out.write(','.join([k]+results[k])+'\n')
